@@ -10,7 +10,6 @@ jobs:
             - uses: actions/checkout@v2
             - uses: wmde/git-filter-repo-docker-action@v1
               with:
-                    privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
                     targetOrg: stephandobri
                     targetRepo: Making-Maker-Branch-Test
                     targetBranch: maker-file-branch
