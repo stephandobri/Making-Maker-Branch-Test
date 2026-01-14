@@ -7,6 +7,10 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
+        - name: Set configuration name and email
+          run: |
+              git config --local user.name "SDobri"
+              git config --local user.email "stephand@neilsquire.ca"
         - name: Checkout repo
           uses: actions/checkout@v2
 
