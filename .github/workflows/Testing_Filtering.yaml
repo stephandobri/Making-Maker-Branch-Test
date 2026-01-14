@@ -18,6 +18,6 @@ jobs:
 
         - name: Switch branches and commit files
           run: |
-              git checkout origin/maker-file-branch
+              git checkout -B maker-file-branch
               git commit -m "Added subset of files to maker-file-branch"
             
