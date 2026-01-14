@@ -7,14 +7,17 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
-            - uses: actions/checkout@v2
-            - uses: wmde/git-filter-repo-docker-action@v1
-              with:
-                    targetOrg: stephandobri
-                    targetRepo: Making-Maker-Branch-Test
-                    targetBranch: maker-file-branch
-                    filterArguments: >-
-                        --path=Build_Files
-                        --path=Documentation\*.csv
-                        --path=Documentation\*Guide.pdf
+        - name: Checkout repo
+          uses: actions/checkout@v2
+
+        - name: Select files and folders
+          run: | 
+            git add Build_Files
+            git add Documentation/*.csv
+            git add Documentation/*Guide.pdf
+
+        - name: Switch branches and commit files
+          run: |
+              git checkout maker-file-branch
+              git commit -m "Added subset of files to maker-file-branch"
             
