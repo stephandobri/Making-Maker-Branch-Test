@@ -12,18 +12,15 @@ jobs:
 
         - name: Set configuration name and email
           run: |
-              git config --local user.name "SDobri"
-              git config --local user.email "stephand@neilsquire.ca"
-
-        - name: Select files and folders
-          run: | 
-            git add Build_Files
-            git add Documentation/*.csv
-            git add Documentation/*Guide.pdf
+              git config --local user.name "github-action"
+              git config --local user.email "github_actions@github.com"
 
         - name: Switch branches and commit files
           run: |
-              git fetch origin
               git checkout maker-file-branch
+              git checkout main Build_Files/**
+              git checkout main Documentation/*.csv
+              git checkout main Documentation/*Guide.pdf
+              git add .
               git commit -m "Added subset of files to maker-file-branch"
             
