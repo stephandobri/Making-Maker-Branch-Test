@@ -1,0 +1,21 @@
+name: Test Filtering
+
+on: workflow_dispatch
+
+jobs:
+    filter_files:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v2
+            - uses: wmde/git-filter-repo-docker-action@v1
+              with:
+                    privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
+                    targetOrg: stephandobri
+                    targetRepo: Making-Maker-Branch-Test
+                    targetBranch: maker-file-branch
+                    filterArguments: >-
+                        --path=Build_Files
+                        --path=Documentation\*.csv
+                        --path=Documentation\*Guide.pdf
+            
