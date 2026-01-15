@@ -12,10 +12,10 @@ jobs:
           with:
               path: maker-file-branch
 
-        - name: Set configuration name and email
-          run: |
-              git config --local user.name "github-action"
-              git config --local user.email "github_actions@github.com"
+      #  - name: Set configuration name and email
+      #    run: |
+      #        git config --local user.name "github-action"
+      #        git config --local user.email "github_actions@github.com"
 
         - name: Grab files to commit and commit them
           uses: actions/checkout@v6
