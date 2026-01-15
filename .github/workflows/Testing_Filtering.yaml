@@ -9,8 +9,6 @@ jobs:
         steps:
         - name: Checkout repo
           uses: actions/checkout@v6
-          with:
-              path: maker-file-branch
 
       #  - name: Set configuration name and email
       #    run: |
@@ -18,11 +16,13 @@ jobs:
       #        git config --local user.email "github_actions@github.com"
 
         - name: Grab files to commit and commit them
-          uses: actions/checkout@v6
-          with:
-              path: main
-              sparse-checkout: |
-                  Build_Files
+          run: |
+              git checkout Build_Files 'Documentation/*.csv' 'Documentation/*Guide.pdf'
+         # uses: actions/checkout@v6
+        #  with:
+        #      path: main
+        #      sparse-checkout: |
+        #          Build_Files
                 #  'Documentation/*.csv'
                 #  'Documentation/*Guide.pdf'
         - name: Add and commit files to the branch.
