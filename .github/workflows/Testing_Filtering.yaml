@@ -17,6 +17,10 @@ jobs:
               git config --local user.name "github-action"
               git config --local user.email "github_actions@github.com"
 
+        - name: Switch to correct branch
+          run: |
+              git checkout maker-file-branch
+
         - name: Grab files to commit and commit them
           run: |
               git checkout Build_Files 'Documentation/*.csv' 'Documentation/*Guide.pdf'
@@ -29,7 +33,6 @@ jobs:
                 #  'Documentation/*Guide.pdf'
         - name: Add and commit files to the branch.
           run: |
-              git checkout maker-file-branch
               git add .
               git commit -m "Added subset of files to maker-file-branch"
             
