@@ -23,7 +23,9 @@ jobs:
 
         - name: Grab files to commit and commit them
           run: |
-              git checkout Build_Files 'Documentation/*.csv' 'Documentation/*Guide.pdf'
+              git checkout main Build_Files 
+              git checkout main 'Documentation/*.csv' 
+              git checkout main 'Documentation/*Guide.pdf'
          # uses: actions/checkout@v6
         #  with:
         #      path: main
