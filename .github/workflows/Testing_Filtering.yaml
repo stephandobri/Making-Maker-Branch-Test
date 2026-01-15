@@ -37,4 +37,5 @@ jobs:
           run: |
               git add .
               git commit -m "Added subset of files to maker-file-branch"
+              git push
             
