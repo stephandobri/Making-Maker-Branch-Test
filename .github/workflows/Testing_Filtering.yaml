@@ -23,8 +23,8 @@ jobs:
               path: main
               sparse-checkout: |
                   Build_Files
-                  'Documentation/*.csv'
-                  'Documentation/*Guide.pdf'
+                #  'Documentation/*.csv'
+                #  'Documentation/*Guide.pdf'
         - name: Add and commit files to the branch.
           run: |
               git add .
