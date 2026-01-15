@@ -27,6 +27,7 @@ jobs:
                 #  'Documentation/*Guide.pdf'
         - name: Add and commit files to the branch.
           run: |
+              git checkout maker-file-branch
               git add .
               git commit -m "Added subset of files to maker-file-branch"
             
