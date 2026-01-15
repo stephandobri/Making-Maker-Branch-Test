@@ -14,8 +14,8 @@ jobs:
 
         - name: Set configuration name and email
           run: |
-              git config --local user.name "github-action"
-              git config --local user.email "github_actions@github.com"
+              git config --local user.name "s.dobri"
+              git config --local user.email "stephan.dobri@queensu.ca"
 
         - name: Switch to correct branch
           run: |
