@@ -19,7 +19,7 @@ jobs:
 
         - name: Switch to correct branch
           run: |
-              git checkout maker-file-branch
+              git checkout -B maker-file-branch
 
         - name: Grab files to commit and commit them
           run: |
