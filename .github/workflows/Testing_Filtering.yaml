@@ -1,41 +1,62 @@
+# This Action creates a branch that's a subset of all the files on an MMC GitHub repo.
+
+# The goal is to make a branch of only the files a maker requires to fulfill a request for a requestor, cutting out all the other files we include.
+
+# Create the name for the Action.
 name: Test Filtering
 
-on: workflow_dispatch
-
+# Define the triggers that make the Action run. It can be run manually (workflow_dispatch) or on pushes to the main (push).
+on: 
+    workflow_dispatch:
+    push:
+        branches:
+            - main
+            
+# These are the jobs, or groups of commands, that are run by the action.
 jobs:
-    filter_files:
-        runs-on: ubuntu-latest
 
+    # The main job is called filter_files and it consists of different steps.
+    filter_files:
+    
+        # Specify runner (virtual machine hosted by GitHub) that does the computations for the job.
+        runs-on: ubuntu-latest
+        
+        # Start the steps to create the branch.
         steps:
+        
+        # Checkout the current repository using the Checkout action. This allows us to access the files
         - name: Checkout repo
           uses: actions/checkout@v6
           with:
+              # fetch-depth: 0 specifies to checkout all existing branches and commit history, instead of the default that ignores other branches.
               fetch-depth: 0
-
+        
+        # Set a user name and email. These don't have to be working ones, but the action spits out an error if these are not included.
         - name: Set configuration name and email
           run: |
-              git config --local user.name "s.dobri"
-              git config --local user.email "stephan.dobri@queensu.ca"
+              # Set the user name and email locally (for this repo) instead of globally.
+              git config --local user.name "github-actions"
+              git config --local user.email "github-actions@github.com"
 
+        # Create (if it does not already exist) the maker-file-branch and check it out (switch to the branch)
         - name: Switch to correct branch
           run: |
+              # The branch name comes after the -B, so it can be edited later if needed.
               git checkout -B maker-file-branch
 
+        # Checkout the files we want to include in this new branch. Note, we need to specify to call these files from the main branch.
         - name: Grab files to commit and commit them
           run: |
               git checkout main Build_Files 
               git checkout main 'Documentation/*.csv' 
               git checkout main 'Documentation/*Guide.pdf'
-         # uses: actions/checkout@v6
-        #  with:
-        #      path: main
-        #      sparse-checkout: |
-        #          Build_Files
-                #  'Documentation/*.csv'
-                #  'Documentation/*Guide.pdf'
+        
+        # Add the newly checked out files to the index, commit them, and push those commits to the maker-file-branch so the files exist there.
         - name: Add and commit files to the branch.
           run: |
+              # Add all files that are currently checked out (the ones specified above)
               git add .
+              # Commit files and add commit message.
               git commit -m "Added subset of files to maker-file-branch"
               git push
           continue-on-error: true
