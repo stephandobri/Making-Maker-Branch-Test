@@ -42,7 +42,7 @@ jobs:
         - name: Switch to correct branch
           run: |
               # The branch name comes after the -B, so it can be edited later if needed.
-              git checkout -B maker-file-branch
+              git checkout maker-file-branch
 
         # Checkout the files we want to include in this new branch. Note, we need to specify to call these files from the main branch.
         - name: Grab files to commit and commit them
