@@ -1,0 +1,11 @@
+# File that includes the devices that are in a kit.
+# This file is read by the GitHUb Action that copies files and folders to this repo
+
+# If a device is added or removed from the kit, add the device name to the list below, or remove it from the list
+
+matrix:
+    # List the devices included here, are they are written in the GitHub repo names
+    - Interact-Switch
+    - MMC60_Assistive_Switch
+    - Raindrop-Switch
+    - Light-Touch-Switch

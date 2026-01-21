@@ -1,0 +1,31 @@
+# This GitHUb Action copies repos based on a text file that indicates which repos to copy
+
+# To run, this file requires a separate file, Included_Device_Repos.txt to be in the same folder as this file.
+
+name: Copy_Device_Repositories
+
+# Choose how to trigger the workflow
+on:
+    # Trigger the workflow manually
+    repository_dispatch:
+    # Trigger the workflow on a schedule. In this case, once at midnight, and once at noon.
+    schedule:
+        - cron: '0 0,12 * * *'
+
+jobs: 
+    runs-on: ubuntu-latest
+    steps:
+        # Checkout the kit repo
+        - name: Checkout the kit repo
+          uses: actions/checkout@v6
+        
+        # Read the file that includes all the repos
+        - name: Read repo names
+          id: read_file
+          uses: andstor/file-reader-action@v1
+          with:
+            path: ".github/workflows/Included_Device_Repo.txt"
+        
+        # Double check the value read
+        - name: Check File Contents
+          run: echo "${ steps.read_file.outputs.contents }"
