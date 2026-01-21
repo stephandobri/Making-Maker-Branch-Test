@@ -12,20 +12,21 @@ on:
     schedule:
         - cron: '0 0,12 * * *'
 
-jobs: 
-    runs-on: ubuntu-latest
-    steps:
-        # Checkout the kit repo
-        - name: Checkout the kit repo
-          uses: actions/checkout@v6
+jobs:
+    file_contents:
+        runs-on: ubuntu-latest
+        steps:
+             # Checkout the kit repo
+            - name: Checkout the kit repo
+              uses: actions/checkout@v6
         
-        # Read the file that includes all the repos
-        - name: Read repo names
-          id: read_file
-          uses: andstor/file-reader-action@v1
-          with:
-            path: ".github/workflows/Included_Device_Repo.txt"
+            # Read the file that includes all the repos
+            - name: Read repo names
+              id: read_file
+              uses: andstor/file-reader-action@v1
+              with:
+                path: ".github/workflows/Included_Device_Repo.txt"
         
-        # Double check the value read
-        - name: Check File Contents
-          run: echo "${ steps.read_file.outputs.contents }"
+            # Double check the value read
+            - name: Check File Contents
+              run: echo "${ steps.read_file.outputs.contents }"
