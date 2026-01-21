@@ -9,8 +9,8 @@ on:
     # Trigger the workflow manually
     repository_dispatch:
     # Trigger the workflow on a schedule. In this case, once at midnight, and once at noon.
-    schedule:
-        - cron: '0 0,12 * * *'
+   # schedule:
+  #      - cron: '0 0,12 * * *'
 
 jobs:
     file_contents:
