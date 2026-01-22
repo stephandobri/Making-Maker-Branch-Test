@@ -23,10 +23,10 @@ jobs:
             # Read the file that includes all the repos
         - name: Read repo names
           id: read_file
-          uses: andstor/file-reader-action@v1
-          with:
-              path: ".github/workflows/Included_Device_Repos.txt"
-        
-            # Double check the value read
-        - name: Check File Contents
-          run: echo "${{ steps.read_file.outputs.contents.matrix }}"
+          # Use python to read the CSV file and create a dynamic matrix with all the devices to add to the kit repo
+          shell: python
+          run: |
+              import pandas
+              included_devices = pandas.read_csv('.github/workflows/Included_Devices.csv')
+              print(included_devices)
+              
