@@ -31,7 +31,7 @@ jobs:
           run: |
               import pandas
               included_devices = pandas.read_csv('.github/workflows/Included_Devices.csv')
-              print(included_devices.RepoName)
+              #print(included_devices.RepoName)
 
     create_matrix:
         runs-on: ubuntu-latest
