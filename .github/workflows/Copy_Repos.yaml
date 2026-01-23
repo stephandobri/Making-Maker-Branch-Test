@@ -38,6 +38,6 @@ jobs:
         # Make a matrix of repo names to run the next section of code with a matrix strategy
         strategy:
           matrix:
-            devices: ${{ included_devices.RepoName}}
+            devices: [Interact-Switch, MMC60_Assisitve_Switch, Light-Touch-Switch, Raindrop-Switch]
                 
             
