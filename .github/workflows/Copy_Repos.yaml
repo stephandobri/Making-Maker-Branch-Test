@@ -32,4 +32,12 @@ jobs:
               import pandas
               included_devices = pandas.read_csv('.github/workflows/Included_Devices.csv')
               print(included_devices)
+
+        # Make a matrix of repo names to run the next section of code with a matrix strategy
+        - name: Create matrix of repos
+          run: |
+              strategy:
+                  matrix:
+                      devices: included_devices.RepoName
+                
               
