@@ -31,13 +31,17 @@ jobs:
           run: |
               import pandas
               included_devices = pandas.read_csv('.github/workflows/Included_Devices.csv')
-              #print(included_devices.RepoName)
+              print(included_devices.RepoName)
 
-    create_matrix:
-        runs-on: ubuntu-latest
+   # create_matrix:
+    #    runs-on: ubuntu-latest
         # Make a matrix of repo names to run the next section of code with a matrix strategy
-        strategy:
-          matrix:
-            devices: [Interact-Switch, MMC60_Assisitve_Switch, Light-Touch-Switch, Raindrop-Switch]
+     #   strategy:
+      #    matrix:
+      #      devices: [Interact-Switch, MMC60_Assisitve_Switch, Light-Touch-Switch, Raindrop-Switch]
+
+      #  steps:
+
+       # - name: Read through
                 
             
