@@ -32,7 +32,7 @@ jobs:
               import pandas
               included_devices = pandas.read_csv('.github/workflows/Included_Devices.csv')
               print(included_devices.RepoName)
-              echo 'device_names = included_devices.RepoName' >> "$GITHUB_OUTPUT"
+              echo included_devices.RepoName >> "$GITHUB_OUTPUT"
 
    # create_matrix:
       #  runs-on: ubuntu-latest
