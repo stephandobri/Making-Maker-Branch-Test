@@ -34,7 +34,7 @@ jobs:
               included_devices = pandas.read_csv('.github/workflows/Included_Devices.csv')
               print(included_devices.RepoName)
               for x in included_devices.RepoName:
-                  devices(x) = json.dumps(included_devices.RepoName(x))
+                  devices(x) = [json.dumps(included_devices.RepoName(x))]
               print(devices)
 
    # create_matrix:
