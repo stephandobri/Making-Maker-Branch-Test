@@ -30,10 +30,11 @@ jobs:
           shell: python
           run: |
               import pandas
+              import json
               included_devices = pandas.read_csv('.github/workflows/Included_Devices.csv')
               print(included_devices.RepoName)
-              env:
-                  devices: included_devices.RepoName
+              devices = json.dumps(included_devices.RepoName)
+              print(devices)
 
    # create_matrix:
       #  runs-on: ubuntu-latest
