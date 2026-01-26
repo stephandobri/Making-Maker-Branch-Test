@@ -8,9 +8,9 @@ name: Test Filtering
 # Define the triggers that make the Action run. It can be run manually (workflow_dispatch) or on pushes to the main (push).
 on: 
     workflow_dispatch:
-    push:
-        branches:
-            - main
+   # push:
+   #     branches:
+   #         - main
             
 # These are the jobs, or groups of commands, that are run by the action.
 jobs:
