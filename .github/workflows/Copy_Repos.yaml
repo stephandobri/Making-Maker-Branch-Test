@@ -52,9 +52,7 @@ jobs:
               print(devices)
               # Pass the python variable "Devices" as a GitHub Output
               with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
-                  #fh.write('device_repos=devices\n')
-                  print(f'device_repos=$devices', file=fh)
-              print(device_repos)
+                  print(f'device_repos=devices', file=fh)
 
     create_matrix:
         runs-on: ubuntu-latest
@@ -62,8 +60,8 @@ jobs:
         # Make a matrix of repo names to run the next section of code with a matrix strategy
         strategy:
           matrix:
-            #devices: ${{ needs.file_contents.outputs.device_repos }}
-            devices: [Interact-Switch, MMC60_Assistive_Switch]
+            devices: ${{ fromJson(needs.file_contents.outputs.device_repos) }}
+            #devices: [Interact-Switch, MMC60_Assistive_Switch]
 
         steps:
 
