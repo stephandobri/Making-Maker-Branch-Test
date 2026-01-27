@@ -69,7 +69,7 @@ jobs:
         - name: Read through the files
           run: |
               echo "${{matrix.devices}}"
-              echo "${{fromJson(needs.file_contents.outputs.device_repos)}}"
+              echo "${{needs.file_contents.outputs.device_repos}}"
         
                 
             
