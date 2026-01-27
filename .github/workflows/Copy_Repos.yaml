@@ -50,7 +50,7 @@ jobs:
               devices = json.dumps(device_list)
               # Print out the devices to include for debugging
               print(devices)
-              echo "devices" >> "$GITHUB_OUTPUT"
+              echo devices >> "$GITHUB_OUTPUT"
 
    # create_matrix:
       #  runs-on: ubuntu-latest
