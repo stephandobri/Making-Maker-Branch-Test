@@ -36,9 +36,7 @@ jobs:
               print(included_devices.RepoName)
               device_list = included_devices.RepoName.tolist()
               print(device_list)
-              devices = []
-              for x, item in device_list:
-                  devices += [json.dumps(device_list[x])]
+              devices = json.dumps(device_list)
               print(devices)
 
    # create_matrix:
