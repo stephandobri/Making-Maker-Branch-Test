@@ -52,7 +52,8 @@ jobs:
               print(devices)
               # Pass the python variable "Devices" as a GitHub Output
               with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
-                  fh.write('device_repos=devices\n')
+                  #fh.write('device_repos=devices\n')
+                  print(f'device_repos=devices', file=fh)
 
     create_matrix:
         runs-on: ubuntu-latest
