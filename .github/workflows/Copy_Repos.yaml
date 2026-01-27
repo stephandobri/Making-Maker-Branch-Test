@@ -37,7 +37,7 @@ jobs:
               device_list = included_devices.RepoName.tolist()
               print(device_list)
               devices = []
-              for x in device_list:
+              for x, item in device_list:
                   devices += [json.dumps(device_list[x])]
               print(devices)
 
