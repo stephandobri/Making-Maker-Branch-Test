@@ -54,14 +54,19 @@ jobs:
               with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
                   print(f'device_repos=devices', file=fh)
 
+        - name: Check output
+          id: check_repos
+          run: |
+              echo "${{ steps.read_file.outputs.device_repos }}
+
     create_matrix:
         runs-on: ubuntu-latest
         needs: file_contents
         # Make a matrix of repo names to run the next section of code with a matrix strategy
         strategy:
           matrix:
-            devices: ${{ fromJson(needs.file_contents.outputs.device_repos) }}
-            #devices: [Interact-Switch, MMC60_Assistive_Switch]
+            #devices: ${{ fromJson(needs.file_contents.outputs.device_repos) }}
+            devices: [Interact-Switch, MMC60_Assistive_Switch]
 
         steps:
 
