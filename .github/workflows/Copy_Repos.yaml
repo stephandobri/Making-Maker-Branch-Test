@@ -60,7 +60,8 @@ jobs:
         # Make a matrix of repo names to run the next section of code with a matrix strategy
         strategy:
           matrix:
-            devices: ${{ needs.file_contents.outputs.device_repos }}
+            #devices: ${{ needs.file_contents.outputs.device_repos }}
+            devices: [Interact-Switch, MMC60_Assistive_Switch]
 
         steps:
 
