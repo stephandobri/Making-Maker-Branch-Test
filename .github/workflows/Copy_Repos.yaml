@@ -60,7 +60,7 @@ jobs:
         # Make a matrix of repo names to run the next section of code with a matrix strategy
         strategy:
           matrix:
-            devices: ${{fromJson(needs.file_contents.steps.read_file.outputs.device_repos)}}
+            devices: ${{fromJson(needs.file_contents.outputs.device_repos)}}
 
         steps:
 
