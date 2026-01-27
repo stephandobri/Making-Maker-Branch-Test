@@ -57,7 +57,7 @@ jobs:
         - name: Check output
           id: check_repos
           run: |
-              echo "${{ steps.read_file.outputs.device_repos }}
+              echo "${{ steps.read_file.outputs.device_repos }}"
 
     create_matrix:
         runs-on: ubuntu-latest
