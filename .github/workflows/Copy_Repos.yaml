@@ -67,7 +67,7 @@ jobs:
 
         - name: Read through the files
           run: |
-              echo "matrix.devices"
+              echo "${{ matrix.devices}}"
               echo "${{ needs.file_contents.outputs.device_repos }}"
         
                 
