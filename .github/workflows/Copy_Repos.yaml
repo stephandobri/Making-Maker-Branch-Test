@@ -33,7 +33,8 @@ jobs:
               import json
               fields = ["RepoName"]
               included_devices = pandas.read_csv('.github/workflows/Included_Devices.csv', skipinitialspace=True, usecols=fields)
-              print(included_devices)
+              print(included_devices.RepoName)
+              included_devices.to_list()
               devices = []
               for x in included_devices.RepoName:
                   devices += [json.dumps(included_devices.RepoName(x))]
