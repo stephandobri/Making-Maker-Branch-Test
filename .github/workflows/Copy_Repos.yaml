@@ -13,31 +13,44 @@ on:
     #    - cron: '0 0,12 * * *'
 
 jobs:
+    # Read the file contents from the CSV in the repo
     file_contents:
         runs-on: ubuntu-latest
+        outputs:
+              devices_repos: ${{ steps.read_file.outputs.devices }}
         steps:
-             # Checkout the kit repo
+        # Checkout the kit repo
         - name: Checkout the kit repo
           uses: actions/checkout@v6
-
+          
+        # Install python dependencies for the next step
         - name: Install Python dependencies
           run: python -m pip install --upgrade pip pandas
         
-            # Read the file that includes all the repos
+        # Read the file that includes all the repos
         - name: Read repo names
           id: read_file
+          
           # Use python to read the CSV file and create a dynamic matrix with all the devices to add to the kit repo
           shell: python
           run: |
+              # Import the requesite python libraries
               import pandas
               import json
-              fields = ["RepoName"]
-              included_devices = pandas.read_csv('.github/workflows/Included_Devices.csv', skipinitialspace=True, usecols=fields)
+              #fields = ["RepoName"]
+              # Read the file
+              included_devices = pandas.read_csv('.github/workflows/Included_Devices.csv', skipinitialspace=True, usecols=["RepoName"])
+              # Print out what has been read for debugging
               print(included_devices.RepoName)
+              # Pandas uses a different data type that doesn't work with the next function, so change it from a series to a list data type
               device_list = included_devices.RepoName.tolist()
+              # Print the new list for debugginb
               print(device_list)
+              # Convert the list to JSON format for the matrix in the next step
               devices = json.dumps(device_list)
+              # Print out the devices to include for debugging
               print(devices)
+              echo "devices" >> "$GITHUB_OUTPUT"
 
    # create_matrix:
       #  runs-on: ubuntu-latest
