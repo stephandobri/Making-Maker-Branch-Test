@@ -17,7 +17,7 @@ jobs:
     file_contents:
         runs-on: ubuntu-latest
         outputs:
-              devices_repos: ${{ steps.read_file.outputs.devices }}
+              device_repos: ${{ steps.read_file.outputs.device_repos }}
         steps:
         # Checkout the kit repo
         - name: Checkout the kit repo
@@ -54,17 +54,18 @@ jobs:
               with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
                   fh.write('device_repos=devices\n')
 
-   # create_matrix:
-      #  runs-on: ubuntu-latest
-      #  needs: file_contents
+    create_matrix:
+        runs-on: ubuntu-latest
+        needs: file_contents
         # Make a matrix of repo names to run the next section of code with a matrix strategy
-      #  strategy:
-      #    matrix:
-       #     devices: [Interact-Switch, MMC60_Assisitve_Switch, Light-Touch-Switch, Raindrop-Switch]
+        strategy:
+          matrix:
+            devices: ${{fromJson(needs.file_contents.steps.read_file.outputs.device_repos)}}
 
-       # steps:
+        steps:
 
-       # - name: Read through the files
+        - name: Read through the files
+          run: echo "matrix.devices"
         
                 
             
