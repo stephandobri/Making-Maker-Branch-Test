@@ -52,7 +52,7 @@ jobs:
               print(devices)
               # Pass the python variable "Devices" as a GitHub Output
               with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
-                  print(f'device_repos=$devices', file=fh)
+                  print(f'device_repos={devices}', file=fh)
 
         - name: Check output
           id: check_repos
