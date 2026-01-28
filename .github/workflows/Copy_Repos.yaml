@@ -94,7 +94,7 @@ jobs:
 
         # Copy the maker files
         - name: Copy maker files
-          run: bash $KIT_REPO_PATH/.github/workflows/open_maker_files.sh
+          run: bash ${{ env.KIT_REPO_PATH }}/.github/workflows/open_maker_files.sh
           env:
               DESTINATION_PATH: ./${{matrix.devices}}  
 
