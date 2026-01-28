@@ -23,7 +23,7 @@ jobs:
         - name: Checkout the kit repo
           uses: actions/checkout@v6
           env:
-              KIT_REPO_PATH: $GITHUB_WORKSPACE
+              KIT_REPO_PATH: ${GITHUB_WORKSPACE}
         
         - name: Double check Kit Repo Path
           run: echo "$KIT_REPO_PATH"
