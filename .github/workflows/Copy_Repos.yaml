@@ -29,7 +29,7 @@ jobs:
           env:
             KIT_REPO_PATH: ${{ github.repository }}
           run: |
-              echo "$KIT_REPO_PATH"
+              echo "kit_repo = $KIT_REPO_PATH" >> "$GITHUB_OUTPUT"
               echo "${{ github.repository }}"
           
         # Install python dependencies for the next step
