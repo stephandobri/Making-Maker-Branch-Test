@@ -28,7 +28,7 @@ jobs:
         
         - name: Double check Kit Repo Path
           run: |
-              echo "${{ env.KIT_REPO_PATH }}"
+              echo "$KIT_REPO_PATH"
               echo "${{ github.repository}}"
           
         # Install python dependencies for the next step
