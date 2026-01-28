@@ -23,13 +23,13 @@ jobs:
         - name: Checkout the kit repo
           id: kit_repo
           uses: actions/checkout@v6
-          env:
-              KIT_REPO_PATH: ${{ github.repository }}
         
         - name: Double check Kit Repo Path
+          env:
+            KIT_REPO_PATH: ${{ github.repository }}
           run: |
               echo "$KIT_REPO_PATH"
-              echo "${{ github.repository}}"
+              echo "${{ github.repository }}"
           
         # Install python dependencies for the next step
         - name: Install Python dependencies
@@ -76,7 +76,6 @@ jobs:
         strategy:
           matrix:
             devices: ${{ fromJson(needs.file_contents.outputs.device_repos) }}
-            #devices: [Interact-Switch, MMC60_Assistive_Switch]
 
         steps:
         
