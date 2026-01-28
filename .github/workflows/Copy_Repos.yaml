@@ -18,7 +18,7 @@ jobs:
         runs-on: ubuntu-latest
         outputs:
               device_repos: ${{ steps.read_file.outputs.device_repos }}
-              kit_repo: ${{ steps.kit_repo_step.outputs.KIT_REPO_PATH}}
+              kit_repo: ${{ steps.kit_repo_step.outputs.kit_repo}}
         steps:
         # Checkout the kit repo
         - name: Checkout the kit repo
@@ -29,7 +29,7 @@ jobs:
           env:
             KIT_REPO_PATH: ${{ github.repository }}
           run: |
-              echo "kit_repo = $KIT_REPO_PATH" >> "$GITHUB_OUTPUT"
+              echo "kit_repo = $KIT_REPO_PATH" >> $GITHUB_OUTPUT
               echo "${{ github.repository }}"
           
         # Install python dependencies for the next step
@@ -69,7 +69,7 @@ jobs:
               # Print out for debugging
               echo "${{ fromJson(steps.read_file.outputs.device_repos) }}"
               # echo "${{ steps.read_file.outputs.device_repos }}"
-              echo "Kit Repo: ${{ steps.kit_repo_step.outputs.kit_repo }}"
+              echo "Kit Repo: ${{ steps.kit_repo_step.outputs.kit_repo}}"
 
     create_matrix:
         runs-on: ubuntu-latest
