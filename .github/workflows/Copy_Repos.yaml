@@ -86,7 +86,11 @@ jobs:
               fetch-depth: 0
 
         # Copy the maker files
-        #- name: Copy maker files
+        - name: Copy maker files
+          run: bash ./.github/workflows/open_maker_files.sh
+          env:
+              DESTINATION_PATH: ./${{matrix.devices}}  
+
         
                 
             
