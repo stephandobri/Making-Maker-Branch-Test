@@ -18,13 +18,14 @@ jobs:
         runs-on: ubuntu-latest
         outputs:
               device_repos: ${{ steps.read_file.outputs.device_repos }}
+              kit_repo: ${{ steps.kit_repo_step.outputs.KIT_REPO_PATH}}
         steps:
         # Checkout the kit repo
         - name: Checkout the kit repo
-          id: kit_repo
           uses: actions/checkout@v6
         
         - name: Double check Kit Repo Path
+          id: kit_repo_step
           env:
             KIT_REPO_PATH: ${{ github.repository }}
           run: |
@@ -68,6 +69,7 @@ jobs:
               # Print out for debugging
               echo "${{ fromJson(steps.read_file.outputs.device_repos) }}"
               # echo "${{ steps.read_file.outputs.device_repos }}"
+              echo "Kit Repo: ${{ steps.kit_repo_step.outputs.kit_repo }}"
 
     create_matrix:
         runs-on: ubuntu-latest
@@ -94,7 +96,7 @@ jobs:
 
         # Copy the maker files
         - name: Copy maker files
-          run: bash ${{ env.KIT_REPO_PATH }}/.github/workflows/open_maker_files.sh
+          run: bash ${{ needs.file_contents.outputs.kit_repo }}/.github/workflows/open_maker_files.sh
           env:
               DESTINATION_PATH: ./${{matrix.devices}}  
 
