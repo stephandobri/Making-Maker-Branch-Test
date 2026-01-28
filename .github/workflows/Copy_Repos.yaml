@@ -83,7 +83,7 @@ jobs:
           uses: actions/checkout@v6
           with:
               repository: makersmakingchange/${{matrix.devices}}
-              fetch_depth: 0
+              fetch-depth: 0
 
         # Copy the maker files
         #- name: Copy maker files
