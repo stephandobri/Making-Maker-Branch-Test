@@ -52,12 +52,13 @@ jobs:
               print(devices)
               # Pass the python variable "Devices" as a GitHub Output
               with open(os.environ['GITHUB_OUTPUT'], 'a') as fh:
-                  print(f'device_repos=devices', file=fh)
+                  print(f'device_repos=$devices', file=fh)
 
         - name: Check output
           id: check_repos
           run: |
-              echo "${{ fromJSON(steps.read_file.outputs.device_repos) }}"
+              #echo "${{ fromJson(steps.read_file.outputs.device_repos) }}"
+              echo "${{ steps.read_file.outputs.device_repos }}"
 
     create_matrix:
         runs-on: ubuntu-latest
