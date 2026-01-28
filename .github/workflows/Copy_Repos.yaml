@@ -87,7 +87,7 @@ jobs:
           run: |
               echo "Read device name: ${{matrix.devices}}"
               echo "Read device list: ${{needs.file_contents.outputs.device_repos}}"
-              echo "Try to read path from environmental variable: $KIT_REPO_PATH"
+              echo "Try to read path from environmental variable: ${{ env.KIT_REPO_PATH }}"
               echo "Try to read path from output ${{ needs.file_contents.outputs.kit_repo}}"
               
         # Checkout the device repo
