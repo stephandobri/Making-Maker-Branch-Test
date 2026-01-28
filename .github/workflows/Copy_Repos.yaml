@@ -18,7 +18,7 @@ jobs:
         runs-on: ubuntu-latest
         outputs:
               device_repos: ${{ steps.read_file.outputs.device_repos }}
-              kit_repo: ${{ steps.kit_repo_step.outputs.kit_repo}}
+              kit_repo: ${{ steps.kit_repo_step.outputs.kit_repo }}
         steps:
         # Checkout the kit repo
         - name: Checkout the kit repo
@@ -29,7 +29,7 @@ jobs:
           env:
             KIT_REPO_PATH: ${{ github.repository }}
           run: |
-              echo "Try to set as a variable with direct value: kit_repo = ${{ github.repository }}" >> $GITHUB_OUTPUT
+              echo "Try to set as a variable with direct value: kit_repo=${{ github.repository }}" >> $GITHUB_OUTPUT
               echo "Read repo directly: ${{ github.repository }}"
               echo "Read repo as environmental variable: $KIT_REPO_PATH"
           
@@ -70,7 +70,7 @@ jobs:
               # Print out for debugging
               echo "${{ fromJson(steps.read_file.outputs.device_repos) }}"
               # echo "${{ steps.read_file.outputs.device_repos }}"
-              echo "Kit Repo: ${{ steps.kit_repo_step.outputs.kit_repo}}"
+              echo "Kit Repo: ${{ steps.kit_repo_step.outputs.kit_repo }}"
 
     create_matrix:
         runs-on: ubuntu-latest
@@ -85,8 +85,10 @@ jobs:
         # Added for debugging and to not have this job empty.
         - name: Read through the files
           run: |
-              echo "${{matrix.devices}}"
-              echo "${{needs.file_contents.outputs.device_repos}}"
+              echo "Read device name: ${{matrix.devices}}"
+              echo "Read device list: ${{needs.file_contents.outputs.device_repos}}"
+              echo "Try to read path from environmental variable: $KIT_REPO_PATH"
+              echo "Try to read path from output ${{ needs.file_contents.outputs.kit_repo}}"
               
         # Checkout the device repo
         - name: Checkout device repo
