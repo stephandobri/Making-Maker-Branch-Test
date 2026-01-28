@@ -21,12 +21,13 @@ jobs:
         steps:
         # Checkout the kit repo
         - name: Checkout the kit repo
+          id: kit_repo
           uses: actions/checkout@v6
           env:
               KIT_REPO_PATH: ${{ github.repository }}
         
         - name: Double check Kit Repo Path
-          run: echo "$KIT_REPO_PATH"
+          run: echo $KIT_REPO_PATH
           
         # Install python dependencies for the next step
         - name: Install Python dependencies
