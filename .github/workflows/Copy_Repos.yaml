@@ -29,7 +29,7 @@ jobs:
           env:
             KIT_REPO_PATH: ${{ github.repository }}
           run: |
-              echo "Try to set as a variable with direct value: kit_repo=${{ github.repository }}" >> "$GITHUB_OUTPUT"
+              echo "kit_repo=${{ github.repository }}" >> $GITHUB_OUTPUT
               echo "Read repo directly: ${{ github.repository }}"
               echo "Read repo as environmental variable: $KIT_REPO_PATH"
           
