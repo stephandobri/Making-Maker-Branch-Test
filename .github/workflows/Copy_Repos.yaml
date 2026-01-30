@@ -99,6 +99,11 @@ jobs:
               path: ./${{matrix.devices}}
               fetch-depth: 0
         
+        # Check path variables
+        - name: Check path variables
+          run: |
+              echo "Github Workspace: $GITHUB_WORKSPACE"
+        
         # Copy the files with Git commands
         - name: Copy maker files
           run: |
