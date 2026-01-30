@@ -101,7 +101,7 @@ jobs:
         # Copy the files with Git commands
         - name: Copy maker files
           run: |
-              cp -R ./Build_Files https://github.com/${{needs.file_contents.outputs.kit_repo}}/tree/main/Build_Files
+              cp -R ./Build_Files ${{needs.file_contents.outputs.kit_repo}}/Build_Files
               cp https://github.com/makersmakingchange/${{matrix.devices}}/Documents/*Guide.pdf https://github.com/${{needs.file_contents.outputs.kit_repo}}/tree/main/Documents/*Guides.pdf
               cp https://github.com/makersmakingchange/${{matrix.devices}}/tree/main//Documents/*BOM.csv https://github.com/${{needs.file_contents.outputs.kit_repo}}/tree/main/Documents/*BOM.csv
 
