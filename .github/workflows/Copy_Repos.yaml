@@ -118,7 +118,7 @@ jobs:
         - name: Commit and push files to kit repo
           run: |
               echo "$PWD"
-              cd ${{ needs.file_contents.outputs.kit_repo}}"
+              cd ${{ needs.file_contents.outputs.kit_repo}}
               git config user.name "GitHub Action"
               git config user.email "github_action@github.com"
               git add .
