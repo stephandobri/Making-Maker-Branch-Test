@@ -115,7 +115,6 @@ jobs:
         # Commit and push the files to the new folder
         - name: Commit and push files to kit repo
           run: |
-              cd ${{needs.file_contents.outputs.device_repos}}
               echo "$PWD"
 
         # Copy the maker files
