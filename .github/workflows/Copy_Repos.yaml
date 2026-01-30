@@ -32,6 +32,7 @@ jobs:
               echo "kit_repo=${{ github.repository }}" >> $GITHUB_OUTPUT
               echo "Read repo directly: ${{ github.repository }}"
               echo "Read repo as environmental variable: $KIT_REPO_PATH"
+              echo "Read repo as environmental variable with brackets: ${{ env.KIT_REPO_PATH }}"
           
         # Install python dependencies for the next step
         - name: Install Python dependencies
@@ -96,13 +97,20 @@ jobs:
           with:
               repository: makersmakingchange/${{matrix.devices}}
               fetch-depth: 0
+        
+        # Copy the files with Git commands
+        - name: Copy maker files
+          run: |
+              cp -R makersmakingchange/${{matrix.devices}}/Build_Files ${{needs.file_contents.outputs.kit_repo}}/Build_Files
+              cp makersmakingchange/${{matrix.devices}}/Documents/*Guide.pdf ${{needs.file_contents.outputs.kit_repo}}/Documents/*Guides.pdf
+              cp makersmakingchange/${{matrix.devices}}/Documents/*BOM.csv ${{needs.file_contents.outputs.kit_repo}}/Documents/*BOM.csv
 
         # Copy the maker files
-        - name: Copy maker files
-          run: bash ${{ needs.file_contents.outputs.kit_repo }}/.github/workflows/open_maker_files.sh
+        #- name: Copy maker files
+        #  run: bash ${{ needs.file_contents.outputs.kit_repo }}/.github/workflows/open_maker_files.sh
           # run: bash ./.github/workflows/open_maker_files.sh
-          env:
-              DESTINATION_PATH: ./${{matrix.devices}}  
+        #  env:
+        #      DESTINATION_PATH: ./${{matrix.devices}}  
 
         
                 
