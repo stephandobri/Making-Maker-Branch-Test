@@ -92,6 +92,12 @@ jobs:
               echo "Read device list: ${{needs.file_contents.outputs.device_repos}}"
               echo "Try to read path from environmental variable: ${{ env.KIT_REPO_PATH }}"
               echo "Try to read path from output ${{ needs.file_contents.outputs.kit_repo}}"
+        
+        # Checkout the kit repo
+        - name: Checkout the kit repo
+          uses: actions/checkout@v6
+          with:
+            path: kit_repo
               
         # Checkout the device repo
         - name: Checkout device repo
@@ -109,7 +115,7 @@ jobs:
         # Copy the files with Git commands
         - name: Copy maker files
           run: |
-              cp -R ./${{matrix.devices}}/Build_Files ./Build_Files
+              cp -R ./${{matrix.devices}}/Build_Files kit_repo/Build_Files
               # Copy maker guide
               # cp ./${{matrix.devices}}/Documents/*Maker_Guide.pdf ./Documents/*Maker_Guide.pdf
               # cp ./${{matrix.devices}}/*BOM.csv ./Documents/*BOM.csv
@@ -118,7 +124,7 @@ jobs:
         - name: Commit and push files to kit repo
           run: |
               echo "$PWD"
-              cd ${{ needs.file_contents.outputs.kit_repo}}
+              cd kit_repo
               git config user.name "GitHub Action"
               git config user.email "github_action@github.com"
               git add .
