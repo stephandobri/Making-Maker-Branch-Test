@@ -23,6 +23,8 @@ jobs:
         # Checkout the kit repo
         - name: Checkout the kit repo
           uses: actions/checkout@v6
+          with:
+              path: ${{ github.repository }}
         
         - name: Double check Kit Repo Path
           id: kit_repo_step
