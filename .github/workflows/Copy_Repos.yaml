@@ -107,9 +107,12 @@ jobs:
         # Copy the files with Git commands
         - name: Copy maker files
           run: |
-              cp -R ./${{matrix.devices}}/Build_Files ./Build_Files
-              cp ./${{matrix.devices}}/Documents/*Guide.pdf ./Documents/*Guides.pdf
-              cp ./${{matrix.devices}}/*BOM.csv ./Documents/*BOM.csv
+              cp -R ./${{matrix.devices}}/Build_Files ./${{matrix.devices}}/Build_Files
+              # Copy maker guide
+              # cp ./${{matrix.devices}}/Documents/*Maker_Guide.pdf ./Documents/*Maker_Guide.pdf
+              # cp ./${{matrix.devices}}/*BOM.csv ./Documents/*BOM.csv
+
+        # Commit and push the files to the new folder
 
         # Copy the maker files
         #- name: Copy maker files
