@@ -116,6 +116,11 @@ jobs:
         - name: Commit and push files to kit repo
           run: |
               echo "$PWD"
+              git config user.name "GitHub Action"
+              git config user.email "github_action@github.com"
+              git add .
+              git commit -m "Automatic update of files from devices listed in the kits"
+              git push 
 
         # Copy the maker files
         #- name: Copy maker files
