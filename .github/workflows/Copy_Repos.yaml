@@ -23,6 +23,8 @@ jobs:
         # Checkout the kit repo
         - name: Checkout the kit repo
           uses: actions/checkout@v6
+          with:
+            path: kit_repo
         
         - name: Double check Kit Repo Path
           id: kit_repo_step
@@ -50,7 +52,7 @@ jobs:
               import json
               import os
               # Read the file
-              included_devices = pandas.read_csv('.github/workflows/Included_Devices.csv', skipinitialspace=True, usecols=["RepoName"])
+              included_devices = pandas.read_csv('kit_repo.github/workflows/Included_Devices.csv', skipinitialspace=True, usecols=["RepoName"])
               # Print out what has been read for debugging
               print(included_devices.RepoName)
               # Pandas uses a different data type that doesn't work with the next function, so change it from a series to a list data type
@@ -116,6 +118,7 @@ jobs:
         - name: Commit and push files to kit repo
           run: |
               echo "$PWD"
+              cd kit_repo
               git config user.name "GitHub Action"
               git config user.email "github_action@github.com"
               git add .
