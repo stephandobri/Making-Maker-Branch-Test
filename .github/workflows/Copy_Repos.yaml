@@ -99,6 +99,10 @@ jobs:
           uses: actions/checkout@v6
           with:
             path: kit_repo
+
+        # Pull the current repo
+        - name: Pull changes to local
+          run: git pull
               
         # Checkout the device repo
         - name: Checkout device repo
@@ -116,7 +120,7 @@ jobs:
         # Copy the files with Git commands
         - name: Copy maker files
           run: |
-              mkdir -p kit_repo/${{matrix.devices}}/Build_Files && cp -R ./${{matrix.devices}}/Build_Files kit_repo/${{matrix.devices}}/Build_Files
+              mkdir -p kit_repo/${{matrix.devices}} && cp -R ./${{matrix.devices}}/Build_Files kit_repo/${{matrix.devices}}
               # Copy maker guide
               # cp ./${{matrix.devices}}/Documents/*Maker_Guide.pdf ./Documents/*Maker_Guide.pdf
               # cp ./${{matrix.devices}}/*BOM.csv ./Documents/*BOM.csv
