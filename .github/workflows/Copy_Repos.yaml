@@ -126,6 +126,9 @@ jobs:
               # Copy maker guide
               # cp ./${{matrix.devices}}/Documents/*Maker_Guide.pdf ./Documents/*Maker_Guide.pdf
               # cp ./${{matrix.devices}}/*BOM.csv ./Documents/*BOM.csv
+              # Ideas for this copying:
+                # 1. Change it over to copying a "Maker File" branch and create that branch in each repo
+                # 2. Copy over the Documents folder, then remove the Working_Documents subfolder and any other files to remove (Summary, Design Rationale)
 
         # Commit and push the files to the new folder
         - name: Commit and push files to kit repo
