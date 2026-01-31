@@ -102,7 +102,9 @@ jobs:
 
         # Pull the current repo
         - name: Pull changes to local
-          run: git pull
+          run: |
+              cd kit_repo
+              git pull
               
         # Checkout the device repo
         - name: Checkout device repo
