@@ -116,7 +116,7 @@ jobs:
         # Copy the files with Git commands
         - name: Copy maker files
           run: |
-              cp -R ./${{matrix.devices}}/Build_Files kit_repo/${{matrix.devices}}/Build_Files
+              mkdir -p kit_repo/${{matrix.devices}}/Build_Files && cp -R ./${{matrix.devices}}/Build_Files kit_repo/${{matrix.devices}}/Build_Files
               # Copy maker guide
               # cp ./${{matrix.devices}}/Documents/*Maker_Guide.pdf ./Documents/*Maker_Guide.pdf
               # cp ./${{matrix.devices}}/*BOM.csv ./Documents/*BOM.csv
