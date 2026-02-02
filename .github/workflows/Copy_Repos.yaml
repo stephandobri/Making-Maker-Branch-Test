@@ -121,7 +121,6 @@ jobs:
         
         # Copy the files with Git commands
         - name: Copy maker files
-          # continue-on-error: true
           run: |
               mkdir -p kit_repo/${{matrix.devices}} && cp -R ./${{matrix.devices}}/Build_Files kit_repo/${{matrix.devices}}
               # Copy maker guide
@@ -131,7 +130,6 @@ jobs:
 
         # Commit and push the files to the new folder
         - name: Commit and push files to kit repo
-          # continue-on-error: true
           run: |
               echo "$PWD"
               cd kit_repo
