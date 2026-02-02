@@ -126,9 +126,6 @@ jobs:
               # Copy maker guide
               mkdir -p kit_repo/${{matrix.devices}}/Documentation && cp -R ./${{matrix.devices}}/Documentation/*.pdf kit_repo/${{matrix.devices}}/Documentation
               cp -R ./${{matrix.devices}}/Documentation/*BOM.csv kit_repo/${{matrix.devices}}/Documentation
-              # Ideas for this copying:
-                # 1. Change it over to copying a "Maker File" branch and create that branch in each repo
-                # 2. Copy over the Documents folder, then remove the Working_Documents subfolder and any other files to remove (Summary, Design Rationale)
 
         # Commit and push the files to the new folder
         - name: Commit and push files to kit repo
@@ -138,6 +135,8 @@ jobs:
               git config user.name "GitHub Action"
               git config user.email "github_action@github.com"
               git add .
+              git commit -m "Automatic update of files from devices listed in the kits"
+              git rm kit_repo/${{matrix.devices}}/Documentation/*Design_Rationale.pdf
               git commit -m "Automatic update of files from devices listed in the kits"
               git push 
 
