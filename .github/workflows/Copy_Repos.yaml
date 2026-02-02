@@ -121,15 +121,17 @@ jobs:
         
         # Copy the files with Git commands
         - name: Copy maker files
+          continue-on-error: true
           run: |
               mkdir -p kit_repo/${{matrix.devices}} && cp -R ./${{matrix.devices}}/Build_Files kit_repo/${{matrix.devices}}
               # Copy maker guide
               mkdir -p kit_repo/${{matrix.devices}}/Documentation && cp -R ./${{matrix.devices}}/Documentation/*.pdf kit_repo/${{matrix.devices}}/Documentation
               cp -R ./${{matrix.devices}}/Documentation/*BOM.csv kit_repo/${{matrix.devices}}/Documentation
-              continue-on-error: true
+              
 
         # Commit and push the files to the new folder
         - name: Commit and push files to kit repo
+          continue-on-error: true
           run: |
               echo "$PWD"
               cd kit_repo
@@ -140,7 +142,7 @@ jobs:
               git rm kit_repo/${{matrix.devices}}/Documentation/*Design_Rationale.pdf
               git commit -m "Automatic update of files from devices listed in the kits"
               git push 
-              continue-on-error: true
+              
 
 
         
