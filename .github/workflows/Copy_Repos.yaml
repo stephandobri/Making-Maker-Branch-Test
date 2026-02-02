@@ -1,6 +1,6 @@
-# This GitHUb Action copies repos based on a text file that indicates which repos to copy
+# This GitHUb Action copies repos based on a csv file that indicates which repos to copy
 
-# To run, this file requires a separate file, Included_Device_Repos.txt to be in the same folder as this file.
+# To run, this file requires a separate file, Included_Devices.csv to be in the same folder as this file.
 
 name: Copy_Device_Repositories
 
