@@ -126,6 +126,7 @@ jobs:
               # Copy maker guide
               mkdir -p kit_repo/${{matrix.devices}}/Documentation && cp -R ./${{matrix.devices}}/Documentation/*.pdf kit_repo/${{matrix.devices}}/Documentation
               cp -R ./${{matrix.devices}}/Documentation/*BOM.csv kit_repo/${{matrix.devices}}/Documentation
+              continue-on-error: true
 
         # Commit and push the files to the new folder
         - name: Commit and push files to kit repo
@@ -139,6 +140,7 @@ jobs:
               git rm kit_repo/${{matrix.devices}}/Documentation/*Design_Rationale.pdf
               git commit -m "Automatic update of files from devices listed in the kits"
               git push 
+              continue-on-error: true
 
 
         
