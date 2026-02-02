@@ -124,8 +124,8 @@ jobs:
           run: |
               mkdir -p kit_repo/${{matrix.devices}} && cp -R ./${{matrix.devices}}/Build_Files kit_repo/${{matrix.devices}}
               # Copy maker guide
-              cp -R ./${{matrix.devices}}/Documentation/*.pdf kit_repo/${{matrix.devices}}/Documentation
-              cp -R ./${{matrix.devices}}/Documentation/*BOM.csv kit_repo/${{matrix.devices}}Documentation/*BOM.csv
+              mkdir -p kit_repo/${{matrix.devices}}/Documentation && cp -R ./${{matrix.devices}}/Documentation/*.pdf kit_repo/${{matrix.devices}}
+              cp -R ./${{matrix.devices}}/Documentation/*BOM.csv kit_repo/${{matrix.devices}}/Documentation
               # Ideas for this copying:
                 # 1. Change it over to copying a "Maker File" branch and create that branch in each repo
                 # 2. Copy over the Documents folder, then remove the Working_Documents subfolder and any other files to remove (Summary, Design Rationale)
