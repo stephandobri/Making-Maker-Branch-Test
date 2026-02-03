@@ -8,9 +8,9 @@ name: Test Filtering
 # Define the triggers that make the Action run. It can be run manually (workflow_dispatch) or on pushes to the main (push).
 on: 
     workflow_dispatch:
-   # push:
-   #     branches:
-   #         - main
+    push:
+        branches:
+            - main
             
 # These are the jobs, or groups of commands, that are run by the action.
 jobs:
@@ -47,15 +47,20 @@ jobs:
         # Checkout the files we want to include in this new branch. Note, we need to specify to call these files from the main branch.
         - name: Grab files to commit and commit them
           run: |
+              # Grab the Build_Files folder and subfolders
               git checkout main Build_Files 
+              
+              # Grab the CSV version of the BOM
               git checkout main 'Documentation/*.csv' 
-              git checkout main 'Documentation/*Guide.pdf'
+
+              # Grab all PDFs under the Documentation folder
+              git checkout main 'Documentation/*.pdf'
         
         # Add the newly checked out files to the index, commit them, and push those commits to the maker-file-branch so the files exist there.
         - name: Add and commit files to the branch.
           run: |
               # Add all files that are currently checked out (the ones specified above)
-              git add .
+              git add --all -- :^Documentation/*Design_Rationale.pdf
               # Commit files and add commit message.
               git commit -m "Added subset of files to maker-file-branch"
               git push
