@@ -114,7 +114,7 @@ jobs:
               echo "Try to read path from environmental variable: ${{ env.KIT_REPO_PATH }}"
               echo "Try to read path from output ${{ needs.file_contents.outputs.kit_repo}}"
         
-        # Checkout the kit repo
+        # Checkout the kit repo again because checkouts don't pass between jobs
         - name: Checkout the kit repo
           uses: actions/checkout@v6
           with:
@@ -130,7 +130,7 @@ jobs:
         - name: Checkout device repo
           uses: actions/checkout@v6
           with:
-              # Check out the individual device repo and add the relative path to direct to the repo
+              # Checkout the individual device repo and add the relative path to direct to the repo
               repository: makersmakingchange/${{matrix.devices}}
               path: ./${{matrix.devices}}
               # Fetch-depth: 0 so the checkout pulls all branches of the repo, just in case
